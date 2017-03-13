@@ -66,7 +66,7 @@ class Shell extends events_1.EventEmitter {
         });
         this.currentContext = Context_1.ContextIndex.SHELL;
         this.initStreams();
-        Semaphore_1.default.on('please:shell:context', this.switchContext.bind(this));
+        Semaphore_1.semaphore.on('please:shell:context', this.switchContext.bind(this));
     }
     setCommands(contextId, commands) {
         this.commands[contextId] = commands;
@@ -197,7 +197,7 @@ class Shell extends events_1.EventEmitter {
                 path,
                 index: this.currentContext,
             };
-            Semaphore_1.default.signal('shell:change:context', event);
+            Semaphore_1.semaphore.signal('shell:change:context', event);
             return event;
         };
         if (Context_1.ContextIndex.SHELL === pathComps.length) {
@@ -266,7 +266,7 @@ class Shell extends events_1.EventEmitter {
                     if (groupData.has('extent')) {
                         const extent = groupData.get('extent', Region_1.default.getWorldExtent().getArray());
                         this.postSwitchCallbacks.push(() => {
-                            Semaphore_1.default.once('layer:update:complete', () => {
+                            Semaphore_1.semaphore.once('layer:update:complete', () => {
                                 Region_1.default.push(extent);
                             });
                         });
@@ -363,11 +363,11 @@ class Shell extends events_1.EventEmitter {
     }
     loginUser(u) {
         this.user = u;
-        Semaphore_1.default.signal('user:login', u);
+        Semaphore_1.semaphore.signal('user:login', u);
     }
     logoutUser() {
         this.user = null;
-        Semaphore_1.default.signal('user:logout');
+        Semaphore_1.semaphore.signal('user:logout');
     }
 }
 exports.Shell = Shell;

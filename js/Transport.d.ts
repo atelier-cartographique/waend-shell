@@ -46,7 +46,7 @@ export interface ITransportOptions {
     listeners: IListeners;
     beforeSend?: (a: XMLHttpRequest) => void;
 }
-declare class Transport extends EventEmitter {
+export declare class Transport extends EventEmitter {
     protected transport: (o: ITransportOptions) => void;
     constructor();
     get<T>(getOptions: GetOptions<T>): Promise<T>;
@@ -55,4 +55,3 @@ declare class Transport extends EventEmitter {
     put<T>(options: PutOptions<T>): Promise<T>;
     del<T>(delOptions: DelOptions<T>): Promise<T>;
 }
-export default Transport;

@@ -39,7 +39,7 @@ function makeMessage(json) {
 function sockMessage(evt) {
     const message = makeMessage(evt.data);
     if (message) {
-        Semaphore_1.default.signal('sync', message);
+        Semaphore_1.semaphore.signal('sync', message);
     }
 }
 function sockClose(exp) {

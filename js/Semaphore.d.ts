@@ -10,5 +10,4 @@ export declare class Semaphore extends EventEmitter {
     observe<T>(event: string, fn: Observer<T>): void;
     observe2<T, U>(event: string, fn: Observer2<T, U>): void;
 }
-declare const semaphore: Semaphore;
-export default semaphore;
+export declare const semaphore: Semaphore;

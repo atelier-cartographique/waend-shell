@@ -174,5 +174,5 @@ class Transport extends EventEmitter {
         return new Promise(resolver);
     }
 }
-exports.default = Transport;
+exports.Transport = Transport;
 //# sourceMappingURL=Transport.js.map

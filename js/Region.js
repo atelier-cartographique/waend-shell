@@ -38,7 +38,7 @@ class Region extends EventEmitter {
     constructor() {
         super();
         this.state = [WORLD_EXTENT.clone()];
-        Semaphore_1.default.on('region:push', this.push.bind(this));
+        Semaphore_1.semaphore.on('region:push', this.push.bind(this));
     }
     getWorldExtent() {
         return WORLD_EXTENT.clone();
@@ -55,7 +55,7 @@ class Region extends EventEmitter {
         return null;
     }
     emitChange(extent) {
-        Semaphore_1.default.signal('region:change', extent);
+        Semaphore_1.semaphore.signal('region:change', extent);
     }
     pushExtent(extent) {
         this.state.push(extent.normalize());

@@ -32,5 +32,4 @@ export class Semaphore extends EventEmitter {
 
 }
 
-const semaphore = new Semaphore();
-export default semaphore;
+export const semaphore = new Semaphore();

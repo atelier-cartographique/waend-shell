@@ -2,9 +2,9 @@ import * as _ from 'lodash';
 import * as Promise from 'bluebird';
 import * as EventEmitter from 'events';
 import * as debug from 'debug';
-import Transport from './Transport';
+import { Transport } from './Transport';
 import { subscribe } from './Sync';
-import semaphore from './Semaphore';
+import { semaphore } from './Semaphore';
 import {
     Model,
     BaseModelData,

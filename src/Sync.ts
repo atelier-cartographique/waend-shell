@@ -11,7 +11,7 @@
 
 import * as SockJS from 'sockjs-client';
 import * as debug from 'debug';
-import semaphore from './Semaphore';
+import { semaphore } from './Semaphore';
 import { ModelData } from "waend-lib";
 const logger = debug('waend:Sync');
 

@@ -171,7 +171,7 @@ const getBaseHandlers =
         return { errorhandler, successHandler };
     };
 
-class Transport extends EventEmitter {
+export class Transport extends EventEmitter {
 
     protected transport: (o: ITransportOptions) => void;
 
@@ -306,5 +306,3 @@ class Transport extends EventEmitter {
 }
 
 
-
-export default Transport;

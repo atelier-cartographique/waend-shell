@@ -23,6 +23,5 @@ class Semaphore extends EventEmitter {
     }
 }
 exports.Semaphore = Semaphore;
-const semaphore = new Semaphore();
-exports.default = semaphore;
+exports.semaphore = new Semaphore();
 //# sourceMappingURL=Semaphore.js.map

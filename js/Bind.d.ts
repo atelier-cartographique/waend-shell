@@ -2,7 +2,7 @@
 /// <reference types="bluebird" />
 import * as Promise from 'bluebird';
 import * as EventEmitter from 'events';
-import Transport from './Transport';
+import { Transport } from './Transport';
 import { Model, BaseModelData, User, Group, Layer, Feature, JSONGeometry } from 'waend-lib';
 export interface IRecord {
     readonly model: Model;

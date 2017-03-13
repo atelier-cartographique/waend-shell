@@ -1,6 +1,6 @@
 import { last } from 'lodash';
 import * as EventEmitter from 'events';
-import semaphore from './Semaphore';
+import { semaphore } from './Semaphore';
 import { Extent, Geometry } from 'waend-lib';
 import { Proj3857 } from 'waend-util';
 

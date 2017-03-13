@@ -132,11 +132,11 @@ class Bind extends EventEmitter {
     constructor(apiUrl) {
         super();
         this.apiUrl = apiUrl;
-        this.transport = new Transport_1.default();
+        this.transport = new Transport_1.Transport();
         this.db = new DB(this.transport, apiUrl);
         this.featurePages = {};
         this.groupCache = {};
-        Semaphore_1.default.observe('sync', (message) => {
+        Semaphore_1.semaphore.observe('sync', (message) => {
             const { channel, event, data } = message;
             if ('update' === event) {
                 const modelData = data;
@@ -273,12 +273,12 @@ class Bind extends EventEmitter {
                 }
                 Sync_1.subscribe('layer', layer.id);
             }
-            Semaphore_1.default.signal('stop:loader');
+            Semaphore_1.semaphore.signal('stop:loader');
             Sync_1.subscribe('group', groupId);
             return g;
         };
         const url = this.apiUrl + path;
-        Semaphore_1.default.signal('start:loader', 'downloading map data');
+        Semaphore_1.semaphore.signal('start:loader', 'downloading map data');
         return this.transport.get({ url, parse });
     }
     getGroups(userId) {
