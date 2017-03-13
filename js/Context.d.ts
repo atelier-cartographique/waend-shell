@@ -5,7 +5,7 @@ import * as Promise from 'bluebird';
 import { Shell, ISys } from './index';
 import { Model } from 'waend-lib';
 import { Bind } from './Bind';
-export declare type IResolver<T> = (resolve: (a: T) => void, reject: (a: Error) => void) => void;
+export declare type IContextEndResolver<T> = (resolve: (a: T) => void, reject: (a: Error) => void) => void;
 export interface ContextOptions {
     shell: Shell;
     data: Model;
@@ -37,6 +37,6 @@ export default class Context extends EventEmitter {
     getGroup(): string | null;
     getLayer(): string | null;
     getFeature(): string | null;
-    end<T>(ret: IResolver<T> | T): Promise<T>;
+    end<T>(ret: IContextEndResolver<T> | T): Promise<T>;
     endWithError<T>(err: Error): Promise<T>;
 }

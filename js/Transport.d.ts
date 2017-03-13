@@ -14,7 +14,7 @@ export interface IResolve {
 export interface IReject {
     (err: Error): void;
 }
-export interface IResolver {
+export interface ITransportResolver {
     (resolve: IResolve, reject: IReject): void;
 }
 export interface IListeners {

@@ -82,6 +82,6 @@ class Context extends EventEmitter {
         return Promise.reject(err);
     }
 }
-Context.binder = Bind_1.get();
+Context.binder = Bind_1.getBinder();
 exports.default = Context;
 //# sourceMappingURL=Context.js.map

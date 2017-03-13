@@ -33,7 +33,7 @@ export interface IReject {
     (err: Error): void;
 }
 
-export interface IResolver {
+export interface ITransportResolver {
     (resolve: IResolve, reject: IReject): void;
 }
 
@@ -186,7 +186,7 @@ class Transport extends EventEmitter {
         const transport = this.transport;
         getOptions = getOptions || {};
 
-        const resolver: IResolver =
+        const resolver: ITransportResolver =
             (resolve, reject) => {
                 const { errorhandler, successHandler } =
                     getBaseHandlers<T>(resolve, reject, getOptions);
@@ -215,7 +215,7 @@ class Transport extends EventEmitter {
         const transport = this.transport;
         postOptions = postOptions || {};
 
-        const resolver: IResolver =
+        const resolver: ITransportResolver =
             (resolve, reject) => {
                 const { errorhandler, successHandler } =
                     getBaseHandlers<T>(resolve, reject, postOptions);
@@ -279,7 +279,7 @@ class Transport extends EventEmitter {
         const transport = this.transport;
         delOptions = delOptions || {};
 
-        const resolver: IResolver =
+        const resolver: ITransportResolver =
             (resolve, reject) => {
                 const { errorhandler, successHandler } =
                     getBaseHandlers<T>(resolve, reject, delOptions);

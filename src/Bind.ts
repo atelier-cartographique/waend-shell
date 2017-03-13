@@ -551,7 +551,7 @@ export class Bind extends EventEmitter {
 
 let bindInstance: Bind;
 
-export function get(apiUrl?: string) {
+export function getBinder(apiUrl?: string) {
     if (!bindInstance) {
         if (apiUrl) {
             bindInstance = new Bind(apiUrl);

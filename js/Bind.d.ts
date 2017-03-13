@@ -59,4 +59,4 @@ export declare class Bind extends EventEmitter {
     matchKeyAsync(prefix: string): Promise<any>;
     matchKey(prefix: string): Model[];
 }
-export declare function get(apiUrl?: string): Bind;
+export declare function getBinder(apiUrl?: string): Bind;

@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const store = {};
-exports.set = function (key, value) {
+exports.setenv = function (key, value) {
     const getter = () => value;
     store[key] = getter;
     return getter;
 };
-exports.get = function (key, def) {
+exports.getenv = function (key, def) {
     if (key in store) {
         return store[key]();
     }
@@ -15,5 +15,5 @@ exports.get = function (key, def) {
     }
     return null;
 };
-exports.default = { set: exports.set, get: exports.get };
+exports.default = { setenv: exports.setenv, getenv: exports.getenv };
 //# sourceMappingURL=Env.js.map

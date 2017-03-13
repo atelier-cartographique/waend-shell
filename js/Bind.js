@@ -440,7 +440,7 @@ class Bind extends EventEmitter {
 }
 exports.Bind = Bind;
 let bindInstance;
-function get(apiUrl) {
+function getBinder(apiUrl) {
     if (!bindInstance) {
         if (apiUrl) {
             bindInstance = new Bind(apiUrl);
@@ -451,5 +451,5 @@ function get(apiUrl) {
     }
     return bindInstance;
 }
-exports.get = get;
+exports.getBinder = getBinder;
 //# sourceMappingURL=Bind.js.map

@@ -9,7 +9,7 @@ interface EnvStore {
 
 const store: EnvStore = {};
 
-export const set =
+export const setenv =
     function <T>(key: string, value: T): Getter<T> {
         const getter = () => value;
         store[key] = getter;
@@ -17,7 +17,7 @@ export const set =
     }
 
 
-export const get =
+export const getenv =
     function <T>(key: string, def?: T): (null | T) {
         if (key in store) {
             return store[key]();
@@ -28,4 +28,4 @@ export const get =
         return null;
     }
 
-export default { set, get };
+export default { setenv, getenv };

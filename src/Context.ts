@@ -14,12 +14,12 @@ import * as _ from 'lodash';
 import * as Promise from 'bluebird';
 import { Shell, ISys } from './index';
 import { Model } from 'waend-lib';
-import { Bind, get as getBinder } from './Bind';
+import { Bind, getBinder } from './Bind';
 
 // import * as debug from 'debug';
 // const logger = debug('waend:Context');
 
-export type IResolver<T> = (resolve: (a: T) => void, reject: (a: Error) => void) => void;
+export type IContextEndResolver<T> = (resolve: (a: T) => void, reject: (a: Error) => void) => void;
 
 export interface ContextOptions {
     shell: Shell;
@@ -129,9 +129,9 @@ export default class Context extends EventEmitter {
     }
 
 
-    end<T>(ret: IResolver<T> | T) {
-        if (_.isFunction(<IResolver<T>>ret)) { // we assume fn(resolve, reject)
-            const resolver = <IResolver<T>>ret;
+    end<T>(ret: IContextEndResolver<T> | T) {
+        if (_.isFunction(<IContextEndResolver<T>>ret)) { // we assume fn(resolve, reject)
+            const resolver = <IContextEndResolver<T>>ret;
             return (new Promise<T>(resolver));
         }
         return Promise.resolve<T>(<T>ret);
