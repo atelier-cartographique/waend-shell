@@ -1,0 +1,25 @@
+{
+  "name": "waend-shell",
+  "version": "1.0.0",
+  "description": "waend shell",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "Pierre Marchand",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "@types/bluebird": "^3.5.0",
+    "@types/debug": "0.0.29",
+    "@types/lodash": "^4.14.55",
+    "@types/node": "^7.0.8",
+    "@types/sockjs-client": "^1.0.30",
+    "bluebird": "^3.5.0",
+    "debug": "^2.6.2",
+    "lodash": "^4.17.4",
+    "sockjs-client": "^1.1.2",
+    "waend-lib": "atelier-cartographique/waend-lib",
+    "waend-util": "atelier-cartographique/waend-util"
+  }
+}
