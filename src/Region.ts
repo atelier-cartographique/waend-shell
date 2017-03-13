@@ -98,6 +98,5 @@ export class Region extends EventEmitter {
 
 };
 
-const region: Region = new Region();
+export const region: Region = new Region();
 
-export default region;

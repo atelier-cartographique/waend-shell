@@ -6,7 +6,7 @@ import { Stream, User, Model, Group, Layer, Feature, SpanPack } from 'waend-lib'
 import Context, { ContextIndex, ContextOrNull, ICommand } from './Context';
 import { setenv } from './Env';
 import { getBinder } from './Bind';
-import region from './Region';
+import { region } from './Region';
 import { semaphore } from './Semaphore';
 const logger = debug('waend:Shell');
 

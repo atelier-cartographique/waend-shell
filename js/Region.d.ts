@@ -11,5 +11,4 @@ export declare class Region extends EventEmitter {
     pushExtent(extent: Extent): void;
     push(e: any): boolean;
 }
-declare const region: Region;
-export default region;
+export declare const region: Region;

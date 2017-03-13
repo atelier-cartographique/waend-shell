@@ -81,6 +81,5 @@ class Region extends EventEmitter {
 }
 exports.Region = Region;
 ;
-const region = new Region();
-exports.default = region;
+exports.region = new Region();
 //# sourceMappingURL=Region.js.map

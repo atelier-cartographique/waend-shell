@@ -264,10 +264,10 @@ class Shell extends events_1.EventEmitter {
                 if (this.previousGroup !== groupId) {
                     this.previousGroup = groupId;
                     if (groupData.has('extent')) {
-                        const extent = groupData.get('extent', Region_1.default.getWorldExtent().getArray());
+                        const extent = groupData.get('extent', Region_1.region.getWorldExtent().getArray());
                         this.postSwitchCallbacks.push(() => {
                             Semaphore_1.semaphore.once('layer:update:complete', () => {
-                                Region_1.default.push(extent);
+                                Region_1.region.push(extent);
                             });
                         });
                     }
