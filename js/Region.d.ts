@@ -4,7 +4,7 @@ import { Extent } from 'waend-lib';
 export declare class Region extends EventEmitter {
     private state;
     constructor();
-    getWorldExtent(): Extent;
+    static getWorldExtent(): Extent;
     get(): Extent;
     pop(): Extent | null;
     emitChange(extent: Extent): void;

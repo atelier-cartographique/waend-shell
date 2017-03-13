@@ -6,7 +6,7 @@ import { Stream, User, Model, Group, Layer, Feature, SpanPack } from 'waend-lib'
 import Context, { ContextIndex, ContextOrNull, ICommand } from './Context';
 import { setenv } from './Env';
 import { getBinder } from './Bind';
-import { region } from './Region';
+import { region, Region } from './Region';
 import { semaphore } from './Semaphore';
 const logger = debug('waend:Shell');
 
@@ -367,7 +367,7 @@ export class Shell extends EventEmitter {
                             if (groupData.has('extent')) {
                                 // it should be an array [minx, miny, maxx, maxy];
                                 const extent = groupData.get('extent',
-                                    region.getWorldExtent().getArray());
+                                    Region.getWorldExtent().getArray());
                                 this.postSwitchCallbacks.push(() => {
                                     semaphore.once('layer:update:complete', () => {
                                         region.push(extent);

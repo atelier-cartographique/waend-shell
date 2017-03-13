@@ -40,7 +40,7 @@ class Region extends EventEmitter {
         this.state = [WORLD_EXTENT.clone()];
         Semaphore_1.semaphore.on('region:push', this.push.bind(this));
     }
-    getWorldExtent() {
+    static getWorldExtent() {
         return WORLD_EXTENT.clone();
     }
     get() {

@@ -51,7 +51,7 @@ export class Region extends EventEmitter {
         semaphore.on('region:push', this.push.bind(this));
     }
 
-    getWorldExtent() {
+    static getWorldExtent() {
         return WORLD_EXTENT.clone();
     }
 
