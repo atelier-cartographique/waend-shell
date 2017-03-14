@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const EventEmitter = require("events");
+const path_1 = require("path");
 const _ = require("lodash");
 const Promise = require("bluebird");
 const Bind_1 = require("./Bind");
@@ -72,6 +73,10 @@ class Context extends EventEmitter {
             return cur[3];
         }
         return null;
+    }
+    resolve(...pathSegments) {
+        const contextPath = path_1.resolve('/', ...this.current);
+        return path_1.resolve(contextPath, ...pathSegments);
     }
     end(ret) {
         if (_.isFunction(ret)) {

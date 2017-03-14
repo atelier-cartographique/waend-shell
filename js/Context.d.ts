@@ -37,6 +37,7 @@ export declare class Context extends EventEmitter {
     getGroup(): string | null;
     getLayer(): string | null;
     getFeature(): string | null;
+    resolve(...pathSegments: string[]): string;
     end<T>(ret: IContextEndResolver<T> | T): Promise<T>;
     endWithError<T>(err: Error): Promise<T>;
 }

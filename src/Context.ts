@@ -10,6 +10,7 @@
 
 
 import * as EventEmitter from 'events';
+import { resolve } from 'path';
 import * as _ from 'lodash';
 import * as Promise from 'bluebird';
 import { Shell, ISys } from './index';
@@ -128,6 +129,11 @@ export class Context extends EventEmitter {
             return cur[3];
         }
         return null;
+    }
+
+    resolve(...pathSegments: string[]) {
+        const contextPath = resolve('/', ...this.current);
+        return resolve(contextPath, ...pathSegments);
     }
 
 
