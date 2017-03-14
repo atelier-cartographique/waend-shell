@@ -59,7 +59,7 @@ class Shell extends events_1.EventEmitter {
         super();
         this.contexts = [null, null, null, null, null];
         this.commands = [[], [], [], [], []];
-        this.contexts[Context_1.ContextIndex.SHELL] = new Context_1.default('root', {
+        this.contexts[Context_1.ContextIndex.SHELL] = new Context_1.Context('root', {
             shell: this,
             data: rootModel,
             parent: null
@@ -236,7 +236,7 @@ class Shell extends events_1.EventEmitter {
             .getUser(userId)
             .then(userData => {
             const parent = this.contexts[Context_1.ContextIndex.SHELL];
-            this.contexts[Context_1.ContextIndex.USER] = new Context_1.default('user', {
+            this.contexts[Context_1.ContextIndex.USER] = new Context_1.Context('user', {
                 shell: this,
                 data: userData,
                 parent
@@ -255,7 +255,7 @@ class Shell extends events_1.EventEmitter {
             return (Bind_1.getBinder()
                 .getGroup(user.id, groupId)
                 .then(groupData => {
-                this.contexts[Context_1.ContextIndex.GROUP] = new Context_1.default("group", {
+                this.contexts[Context_1.ContextIndex.GROUP] = new Context_1.Context("group", {
                     shell: this,
                     data: groupData,
                     parent: this.contexts[Context_1.ContextIndex.USER]
@@ -289,7 +289,7 @@ class Shell extends events_1.EventEmitter {
             return (Bind_1.getBinder()
                 .getLayer(user.id, group.id, layerId)
                 .then(layerData => {
-                this.contexts[Context_1.ContextIndex.LAYER] = new Context_1.default("layer", {
+                this.contexts[Context_1.ContextIndex.LAYER] = new Context_1.Context("layer", {
                     shell: this,
                     data: layerData,
                     parent: this.contexts[Context_1.ContextIndex.GROUP]
@@ -314,7 +314,7 @@ class Shell extends events_1.EventEmitter {
             return (Bind_1.getBinder()
                 .getFeature(user.id, group.id, layer.id, featureId)
                 .then(featureData => {
-                this.contexts[Context_1.ContextIndex.FEATURE] = new Context_1.default("feature", {
+                this.contexts[Context_1.ContextIndex.FEATURE] = new Context_1.Context("feature", {
                     shell: this,
                     data: featureData,
                     parent: this.contexts[Context_1.ContextIndex.LAYER]

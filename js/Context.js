@@ -85,5 +85,5 @@ class Context extends EventEmitter {
     }
 }
 Context.binder = Bind_1.getBinder();
-exports.default = Context;
+exports.Context = Context;
 //# sourceMappingURL=Context.js.map

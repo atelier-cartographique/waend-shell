@@ -43,7 +43,7 @@ export interface ICommand {
 
 export type ContextOrNull = Context | null;
 
-export default class Context extends EventEmitter {
+export class Context extends EventEmitter {
 
     public static binder: Bind = getBinder();
     public shell: Shell;

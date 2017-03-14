@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import * as Promise from 'bluebird';
 import * as debug from 'debug';
 import { Stream, User, Model, Group, Layer, Feature, SpanPack } from 'waend-lib';
-import Context, { ContextIndex, ContextOrNull, ICommand } from './Context';
+import { Context, ContextIndex, ContextOrNull, ICommand } from './Context';
 import { setenv } from './Env';
 import { getBinder } from './Bind';
 import { region, Region } from './Region';

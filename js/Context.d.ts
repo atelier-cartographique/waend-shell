@@ -23,7 +23,7 @@ export interface ICommand {
     command: (ctx: Context, sys: ISys, args: string[]) => Promise<any>;
 }
 export declare type ContextOrNull = Context | null;
-export default class Context extends EventEmitter {
+export declare class Context extends EventEmitter {
     static binder: Bind;
     shell: Shell;
     readonly name: string;
