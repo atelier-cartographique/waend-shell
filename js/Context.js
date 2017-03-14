@@ -28,13 +28,15 @@ class Context extends EventEmitter {
         this.current = computeCurrent(this, []);
     }
     exec(sys, tokens) {
-        const cmd = tokens.shift();
-        if (cmd) {
+        if (tokens.length > 0) {
+            const cmd = tokens[0];
+            const argv = tokens.slice(1);
             const commands = this.commands;
+            const ctx = this;
             const finder = (c) => c.name === cmd;
             const com = commands.find(finder);
             if (com) {
-                return com.command.call(this, sys, ...tokens);
+                return com.command(ctx, sys, argv);
             }
             else if (this.parent) {
                 return this.parent.exec(sys, tokens);

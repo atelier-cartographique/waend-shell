@@ -37,7 +37,7 @@ export enum ContextIndex {
 
 export interface ICommand {
     name: string;
-    command: <T>(ctx: Context, args: string[]) => Promise<T>;
+    command: (ctx: Context, sys: ISys, args: string[]) => Promise<any>;
 }
 
 
@@ -77,15 +77,17 @@ export default class Context extends EventEmitter {
      *  this function executes a command in the scope of this context
      */
     exec(sys: ISys, tokens: string[]): Promise<any> {
-        const cmd = tokens.shift();
-        if (cmd) {
+        if (tokens.length > 0) {
+            const cmd = tokens[0];
+            const argv = tokens.slice(1);
             const commands = this.commands;
+            const ctx = <Context>this;
             const finder: (a: ICommand) => boolean =
                 (c) => c.name === cmd;
             const com = commands.find(finder);
 
             if (com) {
-                return com.command.call(this, sys, ...tokens);
+                return com.command(ctx, sys, argv);
             }
             else if (this.parent) {
                 return this.parent.exec(sys, tokens);

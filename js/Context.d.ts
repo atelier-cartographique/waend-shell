@@ -20,7 +20,7 @@ export declare enum ContextIndex {
 }
 export interface ICommand {
     name: string;
-    command: <T>(ctx: Context, args: string[]) => Promise<T>;
+    command: (ctx: Context, sys: ISys, args: string[]) => Promise<any>;
 }
 export declare type ContextOrNull = Context | null;
 export default class Context extends EventEmitter {
