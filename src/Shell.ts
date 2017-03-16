@@ -90,26 +90,28 @@ const rootModel = new Model({
     properties: {}
 });
 
+export type CommandSet = [ICommand[], ICommand[], ICommand[], ICommand[], ICommand[]];
+
+
 export class Shell extends EventEmitter {
 
     stdin: Stream;
     stdout: Stream;
     stderr: Stream;
     private contexts: [ContextOrNull, ContextOrNull, ContextOrNull, ContextOrNull, ContextOrNull];
-    private commands: [ICommand[], ICommand[], ICommand[], ICommand[], ICommand[]];
     private currentContext: ContextIndex;
     private postSwitchCallbacks: Array<(() => void)>
     private user: User | null;
     private previousGroup: string;
 
-    constructor() {
+    constructor(private commands: CommandSet) {
         super();
         this.contexts = [null, null, null, null, null];
-        this.commands = [[], [], [], [], []];
         this.contexts[ContextIndex.SHELL] = new Context('root', {
             shell: this,
             data: rootModel,
-            parent: null
+            parent: null,
+            commands: this.commands[ContextIndex.SHELL],
         });
         this.currentContext = ContextIndex.SHELL;
         this.initStreams();
@@ -119,8 +121,8 @@ export class Shell extends EventEmitter {
 
     }
 
-    setCommands(contextId: ContextIndex, commands: ICommand[]) {
-        this.commands[contextId] = commands;
+    addCommand(contextId: ContextIndex, command: ICommand) {
+        this.commands[contextId].push(command);
     }
 
 
@@ -334,6 +336,7 @@ export class Shell extends EventEmitter {
                     this.contexts[ContextIndex.USER] = new Context('user', {
                         shell: this,
                         data: userData,
+                        commands: this.commands[ContextIndex.USER],
                         parent
                     });
                     this.currentContext = ContextIndex.USER;
@@ -358,7 +361,8 @@ export class Shell extends EventEmitter {
                         this.contexts[ContextIndex.GROUP] = new Context("group", {
                             shell: this,
                             data: groupData,
-                            parent: this.contexts[ContextIndex.USER]
+                            parent: this.contexts[ContextIndex.USER],
+                            commands: this.commands[ContextIndex.GROUP],
                         });
                         this.currentContext = ContextIndex.GROUP;
                         if (this.previousGroup !== groupId) {
@@ -401,7 +405,8 @@ export class Shell extends EventEmitter {
                         this.contexts[ContextIndex.LAYER] = new Context("layer", {
                             shell: this,
                             data: layerData,
-                            parent: this.contexts[ContextIndex.GROUP]
+                            parent: this.contexts[ContextIndex.GROUP],
+                            commands: this.commands[ContextIndex.LAYER],
                         });
                         this.currentContext = ContextIndex.LAYER;
                         return Promise.resolve(layerData);
@@ -432,7 +437,8 @@ export class Shell extends EventEmitter {
                         this.contexts[ContextIndex.FEATURE] = new Context("feature", {
                             shell: this,
                             data: featureData,
-                            parent: this.contexts[ContextIndex.LAYER]
+                            parent: this.contexts[ContextIndex.LAYER],
+                            commands: this.commands[ContextIndex.FEATURE],
                         });
                         this.currentContext = ContextIndex.FEATURE;
                         return Promise.resolve(featureData);

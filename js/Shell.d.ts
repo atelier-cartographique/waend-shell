@@ -13,18 +13,19 @@ export interface IEventChangeContext {
     index: ContextIndex;
     path: string[];
 }
+export declare type CommandSet = [ICommand[], ICommand[], ICommand[], ICommand[], ICommand[]];
 export declare class Shell extends EventEmitter {
+    private commands;
     stdin: Stream;
     stdout: Stream;
     stderr: Stream;
     private contexts;
-    private commands;
     private currentContext;
     private postSwitchCallbacks;
     private user;
     private previousGroup;
-    constructor();
-    setCommands(contextId: ContextIndex, commands: ICommand[]): void;
+    constructor(commands: CommandSet);
+    addCommand(contextId: ContextIndex, command: ICommand): void;
     initStreams(): void;
     commandLineTokens(cl: string): string[];
     makePipes(n: number): ISys[];

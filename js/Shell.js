@@ -55,21 +55,22 @@ const rootModel = new waend_lib_1.Model({
     properties: {}
 });
 class Shell extends events_1.EventEmitter {
-    constructor() {
+    constructor(commands) {
         super();
+        this.commands = commands;
         this.contexts = [null, null, null, null, null];
-        this.commands = [[], [], [], [], []];
         this.contexts[Context_1.ContextIndex.SHELL] = new Context_1.Context('root', {
             shell: this,
             data: rootModel,
-            parent: null
+            parent: null,
+            commands: this.commands[Context_1.ContextIndex.SHELL],
         });
         this.currentContext = Context_1.ContextIndex.SHELL;
         this.initStreams();
         Semaphore_1.semaphore.on('please:shell:context', this.switchContext.bind(this));
     }
-    setCommands(contextId, commands) {
-        this.commands[contextId] = commands;
+    addCommand(contextId, command) {
+        this.commands[contextId].push(command);
     }
     initStreams() {
         const streams = {
@@ -239,6 +240,7 @@ class Shell extends events_1.EventEmitter {
             this.contexts[Context_1.ContextIndex.USER] = new Context_1.Context('user', {
                 shell: this,
                 data: userData,
+                commands: this.commands[Context_1.ContextIndex.USER],
                 parent
             });
             this.currentContext = Context_1.ContextIndex.USER;
@@ -258,7 +260,8 @@ class Shell extends events_1.EventEmitter {
                 this.contexts[Context_1.ContextIndex.GROUP] = new Context_1.Context("group", {
                     shell: this,
                     data: groupData,
-                    parent: this.contexts[Context_1.ContextIndex.USER]
+                    parent: this.contexts[Context_1.ContextIndex.USER],
+                    commands: this.commands[Context_1.ContextIndex.GROUP],
                 });
                 this.currentContext = Context_1.ContextIndex.GROUP;
                 if (this.previousGroup !== groupId) {
@@ -292,7 +295,8 @@ class Shell extends events_1.EventEmitter {
                 this.contexts[Context_1.ContextIndex.LAYER] = new Context_1.Context("layer", {
                     shell: this,
                     data: layerData,
-                    parent: this.contexts[Context_1.ContextIndex.GROUP]
+                    parent: this.contexts[Context_1.ContextIndex.GROUP],
+                    commands: this.commands[Context_1.ContextIndex.LAYER],
                 });
                 this.currentContext = Context_1.ContextIndex.LAYER;
                 return Promise.resolve(layerData);
@@ -317,7 +321,8 @@ class Shell extends events_1.EventEmitter {
                 this.contexts[Context_1.ContextIndex.FEATURE] = new Context_1.Context("feature", {
                     shell: this,
                     data: featureData,
-                    parent: this.contexts[Context_1.ContextIndex.LAYER]
+                    parent: this.contexts[Context_1.ContextIndex.LAYER],
+                    commands: this.commands[Context_1.ContextIndex.FEATURE],
                 });
                 this.currentContext = Context_1.ContextIndex.FEATURE;
                 return Promise.resolve(featureData);

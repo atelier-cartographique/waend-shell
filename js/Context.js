@@ -19,6 +19,7 @@ class Context extends EventEmitter {
         this.name = name;
         this.shell = options.shell;
         this.data = options.data;
+        this.commands = options.commands;
         this.parent = options.parent;
         this.binder = Bind_1.getBinder();
         const computeCurrent = (ctx, acc) => {

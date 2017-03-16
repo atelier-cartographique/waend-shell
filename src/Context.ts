@@ -25,6 +25,7 @@ export type IContextEndResolver<T> = (resolve: (a: T) => void, reject: (a: Error
 export interface ContextOptions {
     shell: Shell;
     data: Model;
+    commands: ICommand[];
     parent: ContextOrNull;
 }
 
@@ -61,6 +62,7 @@ export class Context extends EventEmitter {
         this.name = name;
         this.shell = options.shell;
         this.data = options.data;
+        this.commands = options.commands;
         this.parent = options.parent;
         this.binder = getBinder();
 

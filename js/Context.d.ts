@@ -9,6 +9,7 @@ export declare type IContextEndResolver<T> = (resolve: (a: T) => void, reject: (
 export interface ContextOptions {
     shell: Shell;
     data: Model;
+    commands: ICommand[];
     parent: ContextOrNull;
 }
 export declare enum ContextIndex {
