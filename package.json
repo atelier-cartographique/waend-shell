@@ -15,12 +15,14 @@
     "@types/debug": "0.0.29",
     "@types/lodash": "^4.14.55",
     "@types/node": "^7.0.8",
-    "@types/sockjs-client": "^1.0.30",
+    "@types/sockjs-client": "^1.0.30"
+  },
+  "dependencies": {
     "bluebird": "^3.5.0",
     "debug": "^2.6.2",
     "lodash": "^4.17.4",
-    "sockjs-client": "^1.1.2",
     "waend-lib": "atelier-cartographique/waend-lib",
-    "waend-util": "atelier-cartographique/waend-util"
+    "waend-util": "atelier-cartographique/waend-util",
+    "sockjs-client": "^1.1.2"
   }
 }
