@@ -38,7 +38,7 @@ export interface ITransportResolver {
 }
 
 export interface IListeners {
-    [propName: string]: EventListener;
+    [propName: string]: EventListener | null;
 }
 
 export type Verb = 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -91,8 +91,10 @@ function transportXHR() {
             Object.keys(listeners).filter(k => !_.startsWith(k, 'upload:'))
                 .forEach((k) => {
                     const li = listeners[k];
-                    logger('XHR set event handler', k);
-                    mkListener(emitter, k, li);
+                    if (li) {
+                        logger('XHR set event handler', k);
+                        mkListener(emitter, k, li);
+                    }
                 });
 
             if (emitter.upload) {
@@ -101,9 +103,11 @@ function transportXHR() {
                     .filter(k => _.startsWith(k, 'upload:'))
                     .map(k => k.split(':')[1])
                     .forEach((k) => {
-                        const li = listeners[k];
-                        logger('XHR.upload set event handler', k);
-                        mkListener(uploadEmitter, k, li);
+                        const li = listeners[`upload:${k}`];
+                        if (li) {
+                            logger('XHR.upload set event handler', k);
+                            mkListener(uploadEmitter, k, li);
+                        }
                     });
             }
         };

@@ -18,7 +18,7 @@ export interface ITransportResolver {
     (resolve: IResolve, reject: IReject): void;
 }
 export interface IListeners {
-    [propName: string]: EventListener;
+    [propName: string]: EventListener | null;
 }
 export declare type Verb = 'GET' | 'POST' | 'PUT' | 'DELETE';
 export interface BaseOptions<T> {

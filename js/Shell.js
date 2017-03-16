@@ -51,7 +51,7 @@ const defaultDescriptor = {
     configurable: false,
 };
 const rootModel = new waend_lib_1.Model({
-    id: '00000000-0000-0000-0000-00000000',
+    id: '',
     properties: {}
 });
 class Shell extends events_1.EventEmitter {
