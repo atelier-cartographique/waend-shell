@@ -20,6 +20,7 @@ class Context extends EventEmitter {
         this.shell = options.shell;
         this.data = options.data;
         this.parent = options.parent;
+        this.binder = Bind_1.getBinder();
         const computeCurrent = (ctx, acc) => {
             if (ctx.parent) {
                 return computeCurrent(ctx.parent, acc);
@@ -89,6 +90,5 @@ class Context extends EventEmitter {
         return Promise.reject(err);
     }
 }
-Context.binder = Bind_1.getBinder();
 exports.Context = Context;
 //# sourceMappingURL=Context.js.map

@@ -46,7 +46,7 @@ export type ContextOrNull = Context | null;
 
 export class Context extends EventEmitter {
 
-    public static binder: Bind = getBinder();
+    public binder: Bind;
     public shell: Shell;
 
     readonly name: string;
@@ -62,6 +62,7 @@ export class Context extends EventEmitter {
         this.shell = options.shell;
         this.data = options.data;
         this.parent = options.parent;
+        this.binder = getBinder();
 
         const computeCurrent: (a: Context, b: string[]) => string[] =
             (ctx, acc) => {

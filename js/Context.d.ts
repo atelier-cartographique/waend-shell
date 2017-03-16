@@ -24,7 +24,7 @@ export interface ICommand {
 }
 export declare type ContextOrNull = Context | null;
 export declare class Context extends EventEmitter {
-    static binder: Bind;
+    binder: Bind;
     shell: Shell;
     readonly name: string;
     readonly data: Model;
