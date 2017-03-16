@@ -69,9 +69,9 @@ export class Context extends EventEmitter {
         const computeCurrent: (a: Context, b: string[]) => string[] =
             (ctx, acc) => {
                 if (ctx.parent) {
-                    return computeCurrent(ctx.parent, acc);
+                    return computeCurrent(ctx.parent, acc.concat(ctx.data.id));
                 }
-                return acc.concat([ctx.data.id]);
+                return acc;
             };
 
         this.current = computeCurrent(this, []);
