@@ -24,7 +24,7 @@ class Context extends EventEmitter {
         this.binder = Bind_1.getBinder();
         const computeCurrent = (ctx, acc) => {
             if (ctx.parent) {
-                return computeCurrent(ctx.parent, acc.concat(ctx.data.id));
+                return computeCurrent(ctx.parent, [ctx.data.id].concat(acc));
             }
             return acc;
         };
