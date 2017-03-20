@@ -69,7 +69,7 @@ function send(...args) {
 }
 exports.send = send;
 function subscribe(type, id) {
-    exports.send('sub', type, id);
+    send('sub', type, id);
 }
 exports.subscribe = subscribe;
 //# sourceMappingURL=Sync.js.map

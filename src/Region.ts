@@ -77,7 +77,7 @@ export class Region extends EventEmitter {
         this.emitChange(extent);
     }
 
-    push(e: any): boolean {
+    push(e: Extent | Array<number> | Geometry): boolean {
         let extent: Extent;
         if (e instanceof Extent) {
             extent = e.clone();

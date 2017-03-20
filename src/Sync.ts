@@ -121,5 +121,5 @@ export function send(...args: any[]) {
  */
 
 export function subscribe(type: string, id: string) {
-    exports.send('sub', type, id);
+    send('sub', type, id);
 }

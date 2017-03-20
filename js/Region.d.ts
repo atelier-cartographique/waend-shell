@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import * as EventEmitter from 'events';
-import { Extent } from 'waend-lib';
+import { Extent, Geometry } from 'waend-lib';
 export declare class Region extends EventEmitter {
     private state;
     constructor();
@@ -9,6 +9,6 @@ export declare class Region extends EventEmitter {
     pop(): Extent | null;
     emitChange(extent: Extent): void;
     pushExtent(extent: Extent): void;
-    push(e: any): boolean;
+    push(e: Extent | Array<number> | Geometry): boolean;
 }
 export declare const region: Region;
