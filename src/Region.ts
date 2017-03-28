@@ -26,7 +26,7 @@ import { last } from 'lodash';
 import * as EventEmitter from 'events';
 import { semaphore } from './Semaphore';
 import { Extent, Geometry } from 'waend-lib';
-import { Proj3857 } from 'waend-util';
+import { pointProject, pointUnproject } from 'waend-util';
 
 
 
@@ -36,8 +36,8 @@ function fequals(a: number, b: number, p: number) {
 
 function compProjected(pt: number[], INC: number) {
     try {
-        const r = Proj3857.forward(pt);
-        const ir = Proj3857.inverse(r);
+        const r = pointProject(pt);
+        const ir = pointUnproject(r);
         return fequals(ir[1], pt[1], INC);
     }
     catch (err) {
