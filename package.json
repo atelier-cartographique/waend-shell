@@ -2,8 +2,9 @@
   "name": "waend-shell",
   "version": "1.0.0",
   "description": "waend shell",
-  "main": "js/index",
-  "typings": "js/index",
+  "main": "src/index",
+  "typings": "defs/index",
+  "module": "src",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"

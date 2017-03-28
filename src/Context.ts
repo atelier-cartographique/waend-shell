@@ -45,6 +45,17 @@ export interface ICommand {
 
 export type ContextOrNull = Context | null;
 
+
+const findCommand: (a: ICommand[], b: string) => (ICommand | null) =
+    (cs, cmdName) => {
+        for (let i = 0; i < cs.length; i += 1) {
+            if (cs[i].name === cmdName) {
+                return cs[i];
+            }
+        }
+        return null;
+    };
+
 export class Context extends EventEmitter {
 
     public binder: Bind;
@@ -86,9 +97,7 @@ export class Context extends EventEmitter {
             const argv = tokens.slice(1);
             const commands = this.commands;
             const ctx = <Context>this;
-            const finder: (a: ICommand) => boolean =
-                (c) => c.name === cmd;
-            const com = commands.find(finder);
+            const com = findCommand(commands, cmd);
 
             if (com) {
                 return com.command(ctx, sys, argv);
