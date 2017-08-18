@@ -2,7 +2,7 @@
   "name": "waend-shell",
   "version": "1.0.0",
   "description": "waend shell",
-  "main": "src/index",
+  "main": "defs/index",
   "typings": "defs/index",
   "module": "src",
   "scripts": {
