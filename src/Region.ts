@@ -22,7 +22,6 @@
  *  along with waend-shell.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { last } from 'lodash';
 import * as EventEmitter from 'events';
 import { semaphore } from './Semaphore';
 import { Extent, Geometry } from 'waend-lib';
@@ -80,7 +79,11 @@ export class Region extends EventEmitter {
     }
 
     get() {
-        return last(this.state).clone();
+        const l = this.state.length;
+        if (l > 0) {
+            return this.state[l - 1].clone();
+        }
+        return WORLD_EXTENT.clone();
     }
 
     pop() {

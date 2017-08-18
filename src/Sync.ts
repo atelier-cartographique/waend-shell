@@ -46,7 +46,7 @@ export interface ISyncMessage {
 
 
 
-let sock: WebSocket;
+let sock: SockJS.Socket;
 const pendings: any[] = [];
 
 function sockOpen() {
@@ -100,7 +100,7 @@ function sockClose(exp: CloseEvent) {
 
 
 export function configure(url: string) {
-    sock = <WebSocket>(new SockJS(url));
+    sock = new SockJS(url);
     sock.onopen = sockOpen;
     sock.onclose = sockClose;
     sock.onmessage = sockMessage;
